@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/Mapa-Leaflet-65c18c?style=for-the-badge&logo=leaflet&logoColor=ffffff" alt="Leaflet">
   <img src="https://img.shields.io/badge/Ruteo-OSRM-2563eb?style=for-the-badge" alt="OSRM">
   <img src="https://img.shields.io/badge/Tipo-SPA-334155?style=for-the-badge" alt="Aplicación SPA">
+  <img src="https://img.shields.io/badge/Licencia-MIT-64748b?style=for-the-badge" alt="Licencia MIT">
 </p>
 
 ---
@@ -25,6 +26,7 @@
 - [Formato de intercambio (JSON)](#formato-de-intercambio-json)
 - [Buenas prácticas de uso](#buenas-prácticas-de-uso)
 - [Roadmap](#roadmap)
+- [Licencia](#licencia)
 - [Autor](#autor)
 
 ---
@@ -50,7 +52,9 @@ Geográficamente, la aplicación nace anclada a **Pucallpa (Ucayali, Perú)** co
 
 ![Captura de pantalla del sistema](img/image.png)
 
-**Demo en vivo:** [Abrir aplicación en GitHub Pages](https://teverde29.github.io/Asignador-Heuristico-de-Redes-Logisticas/)
+La aplicación está desplegada en GitHub Pages y lista para usar directamente, sin instalación ni configuración previa:
+
+**[https://teverde29.github.io/Asignador-Heuristico-de-Redes-Logisticas/](https://teverde29.github.io/Asignador-Heuristico-de-Redes-Logisticas/)**
 
 ---
 
@@ -201,6 +205,12 @@ La red completa (almacenes, zonas, parámetros y última optimización) puede ex
 - [ ] Exportación de reporte en PDF con resumen ejecutivo
 - [ ] Modo de comparación entre corridas (dividir vs. no dividir)
 - [ ] Tests automatizados de los solvers (VAM+MODI, Branch & Bound)
+
+---
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**. Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
 
 ---
 
