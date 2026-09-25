@@ -1,4 +1,4 @@
-# 🗺️ Asignador Heurístico de Redes Logísticas (AHRL)
+# Asignador Heurístico de Redes Logísticas (AHRL)
 
 > Sistema interactivo de asignación óptima almacén–zona sobre un mapa real, con distancias reales por calle (OSRM) y solvers de investigación de operaciones (VAM + MODI / Branch & Bound).
 
@@ -9,25 +9,24 @@
 
 ---
 
-## 📖 Tabla de contenidos
+## Tabla de contenidos
 
-- [Descripción](#-descripción)
-- [Demo](#-demo)
-- [Características principales](#-características-principales)
-- [Stack tecnológico](#-stack-tecnológico)
-- [Arquitectura](#-arquitectura)
-- [Modelado matemático](#-modelado-matemático)
-- [Instalación y uso](#-instalación-y-uso)
-- [Requisitos del sistema](#-requisitos-del-sistema)
-- [Formato de intercambio (JSON)](#-formato-de-intercambio-json)
-- [Buenas prácticas de uso](#-buenas-prácticas-de-uso)
-- [Roadmap](#-roadmap)
-- [Autor](#-autor)
-- [Licencia](#-licencia)
+- [Descripción](#descripción)
+- [Demo](#demo)
+- [Características principales](#características-principales)
+- [Stack tecnológico](#stack-tecnológico)
+- [Arquitectura](#arquitectura)
+- [Modelado matemático](#modelado-matemático)
+- [Instalación y uso](#instalación-y-uso)
+- [Requisitos del sistema](#requisitos-del-sistema)
+- [Formato de intercambio (JSON)](#formato-de-intercambio-json)
+- [Buenas prácticas de uso](#buenas-prácticas-de-uso)
+- [Roadmap](#roadmap)
+- [Autor](#autor)
 
 ---
 
-## 📌 Descripción
+## Descripción
 
 En la gestión de cadenas de suministro, decidir **qué almacén atiende a cada zona de demanda** no es un ejercicio geométrico trivial: depende de la capacidad instalada, de la distancia real sobre la red vial y de si la política operativa permite o no fraccionar un pedido entre varios orígenes. Un error de asignación se traduce directamente en sobrecosto de transporte, saturación de depósitos y desabastecimiento de zonas.
 
@@ -44,38 +43,34 @@ Geográficamente, la aplicación nace anclada a **Pucallpa (Ucayali, Perú)** co
 
 ---
 
-## 🎬 Demo
+## Demo
 
-> _Agrega aquí un GIF o captura de pantalla del mapa con la red optimizada._
+![Captura de pantalla del sistema](img/image.png)
 
-```
-[ Screenshot / GIF del sistema en funcionamiento ]
-```
-
-🔗 **Demo en vivo:** _[agregar enlace si está desplegado, ej. GitHub Pages]_
+**Demo en vivo:** [Abrir aplicación en GitHub Pages](https://teverde29.github.io/Asignador-Heuristico-de-Redes-Logisticas/)
 
 ---
 
-## ✨ Características principales
+## Características principales
 
-- 🗺️ **Mapa interactivo** con vistas 2D (OpenStreetMap) y 3D/satelital (Esri World Imagery).
-- 📍 **Geocodificación** de direcciones vía Nominatim (OpenStreetMap).
-- 🎯 **Picking en mapa**: los almacenes y zonas se georreferencian haciendo clic, nunca digitando coordenadas a mano.
-- 🚚 **Ruteo real por calle** con OSRM, incluyendo caché en memoria por par de coordenadas.
-- 🛡️ **Degradación elegante**: si OSRM no responde, el sistema recurre a distancia de Haversine con factor de corrección, marcando la ruta como "estimada" en vez de fallar silenciosamente.
-- 🧮 **Dos motores de optimización**, según la política operativa:
+- **Mapa interactivo** con vistas 2D (OpenStreetMap) y 3D/satelital (Esri World Imagery).
+- **Geocodificación** de direcciones vía Nominatim (OpenStreetMap).
+- **Picking en mapa**: los almacenes y zonas se georreferencian haciendo clic, nunca digitando coordenadas a mano.
+- **Ruteo real por calle** con OSRM, incluyendo caché en memoria por par de coordenadas.
+- **Degradación elegante**: si OSRM no responde, el sistema recurre a distancia de Haversine con factor de corrección, marcando la ruta como "estimada" en vez de fallar silenciosamente.
+- **Dos motores de optimización**, según la política operativa:
   - **VAM + MODI** — Problema de Transporte clásico (con fraccionamiento de demanda entre almacenes).
   - **Branch & Bound** — Problema de Asignación Generalizada binario (sin fraccionamiento), con cotas duales, semilla voraz y poda por capacidad.
-- 📊 **KPIs en vivo**: costo total, distancia ponderada (km·unidad), satisfacción de demanda y utilización de capacidad por almacén.
-- 🚦 **Semaforización de estados** por zona: Cubierta, Parcial o Sin capacidad.
-- 💾 **Import/Export JSON** con validación estructural estricta (todo o nada) para portabilidad de la red entre equipos.
-- 🌗 **Tema claro/oscuro** persistido en `localStorage`.
-- 🔒 **Validación en vivo** de parámetros, confirmaciones destructivas y cancelación no destructiva de operaciones en curso.
-- 📦 **Cero backend, cero build step**: un solo archivo HTML, ejecutable localmente o desde cualquier servidor estático.
+- **KPIs en vivo**: costo total, distancia ponderada (km·unidad), satisfacción de demanda y utilización de capacidad por almacén.
+- **Semaforización de estados** por zona: Cubierta, Parcial o Sin capacidad.
+- **Import/Export JSON** con validación estructural estricta (todo o nada) para portabilidad de la red entre equipos.
+- **Tema claro/oscuro** persistido en `localStorage`.
+- **Validación en vivo** de parámetros, confirmaciones destructivas y cancelación no destructiva de operaciones en curso.
+- **Cero backend, cero build step**: un solo archivo HTML, ejecutable localmente o desde cualquier servidor estático.
 
 ---
 
-## 🛠️ Stack tecnológico
+## Stack tecnológico
 
 | Capa | Tecnología | Función |
 |---|---|---|
@@ -92,7 +87,7 @@ No se utilizan frameworks de componentes, bundlers ni librerías de gráficos de
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 AHRL sigue una arquitectura **SPA portable de archivo único**, ejecutada íntegramente del lado del cliente:
 
@@ -104,13 +99,13 @@ AHRL sigue una arquitectura **SPA portable de archivo único**, ejecutada ínteg
 Esta decisión privilegia la **portabilidad absoluta** y la **auditoría directa del código fuente**, ideal para entornos académicos y de campo.
 
 ```
-📁 ahrl/
+ahrl/
  └── index.html   # Interfaz + lógica de negocio + solvers, todo en un archivo
 ```
 
 ---
 
-## 🧮 Modelado matemático
+## Modelado matemático
 
 El núcleo analítico implementa **dos regímenes de negocio** claramente diferenciados:
 
@@ -129,11 +124,11 @@ Cuando la política prohíbe fraccionar un pedido:
 
 En ambos casos, cualquier inconsistencia (demanda insatisfecha, rutas aproximadas por fallo de OSRM, timeout de búsqueda exacta) se informa al operador mediante un modal de auditoría.
 
-> 📄 La memoria descriptiva completa del proyecto —con el modelado matemático detallado, funciones de costo y pseudocódigo de los solvers— está disponible en [`/docs/memoria-descriptiva.pdf`](./docs).
+> La memoria descriptiva completa del proyecto —con el modelado matemático detallado, funciones de costo y pseudocódigo de los solvers— está disponible en [`/docs/memoria-descriptiva.pdf`](./docs).
 
 ---
 
-## 🚀 Instalación y uso
+## Instalación y uso
 
 No requiere instalación de dependencias ni pasos de compilación.
 
@@ -144,12 +139,8 @@ git clone https://github.com/TeVerde29/asignador-heuristico-redes-logisticas.git
 # Entrar a la carpeta del proyecto
 cd asignador-heuristico-redes-logisticas
 
-# Abrir index.html directamente en el navegador,
-# o servirlo con cualquier servidor estático:
-npx serve .
+# Abrir index.html directamente en el navegador
 ```
-
-Luego abre `http://localhost:3000` (o el puerto indicado) en tu navegador.
 
 ### Flujo básico de uso
 
@@ -162,7 +153,7 @@ Luego abre `http://localhost:3000` (o el puerto indicado) en tu navegador.
 
 ---
 
-## 💻 Requisitos del sistema
+## Requisitos del sistema
 
 | Componente | Requisito mínimo |
 |---|---|
@@ -174,7 +165,7 @@ Luego abre `http://localhost:3000` (o el puerto indicado) en tu navegador.
 
 ---
 
-## 🔄 Formato de intercambio (JSON)
+## Formato de intercambio (JSON)
 
 La red completa (almacenes, zonas, parámetros y última optimización) puede exportarse e importarse como JSON, con validación estructural estricta ("todo o nada"): un error de sintaxis o de tipo rechaza la carga completa por diseño, para evitar estados corruptos.
 
@@ -192,7 +183,7 @@ La red completa (almacenes, zonas, parámetros y última optimización) puede ex
 
 ---
 
-## ✅ Buenas prácticas de uso
+## Buenas prácticas de uso
 
 - Georreferenciar siempre mediante *picking* en el mapa o búsqueda Nominatim — nunca inventar coordenadas.
 - Usar capacidades **reales**, descontando reservas, merma y stock inmovilizado.
@@ -202,16 +193,15 @@ La red completa (almacenes, zonas, parámetros y última optimización) puede ex
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Exportación de reporte en PDF con resumen ejecutivo
-- [ ] Soporte multi-idioma (EN/ES)
 - [ ] Modo de comparación entre corridas (dividir vs. no dividir)
 - [ ] Tests automatizados de los solvers (VAM+MODI, Branch & Bound)
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Pedro Giovanni Ricra Figueroa**
 Estudiante de Ingeniería de Sistemas — Universidad Nacional de Ucayali
@@ -222,14 +212,8 @@ Estudiante de Ingeniería de Sistemas — Universidad Nacional de Ucayali
 
 ---
 
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
-
----
-
 <div align="center">
 
-⭐ Si este proyecto te resultó útil, considera darle una estrella en GitHub.
+Si este proyecto te resultó útil, considera darle una estrella en GitHub.
 
 </div>
