@@ -2,10 +2,13 @@
 
 > Sistema interactivo de asignación óptima almacén–zona sobre un mapa real, con distancias reales por calle (OSRM) y solvers de investigación de operaciones (VAM + MODI / Branch & Bound).
 
-![Status](https://img.shields.io/badge/status-active-2dd4bf?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
-![Made with](https://img.shields.io/badge/made%20with-JavaScript%20Vanilla-f5b942?style=flat-square)
-![Type](https://img.shields.io/badge/type-SPA%20%2F%20Single%20File-60a5fa?style=flat-square)
+<p align="center">
+  <img src="https://img.shields.io/badge/Estado-Activo-0f9488?style=for-the-badge" alt="Estado: activo">
+  <img src="https://img.shields.io/badge/JavaScript-Vanilla-f5b942?style=for-the-badge&logo=javascript&logoColor=111827" alt="JavaScript Vanilla">
+  <img src="https://img.shields.io/badge/Mapa-Leaflet-65c18c?style=for-the-badge&logo=leaflet&logoColor=ffffff" alt="Leaflet">
+  <img src="https://img.shields.io/badge/Ruteo-OSRM-2563eb?style=for-the-badge" alt="OSRM">
+  <img src="https://img.shields.io/badge/Tipo-SPA-334155?style=for-the-badge" alt="Aplicación SPA">
+</p>
 
 ---
 
