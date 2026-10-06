@@ -35,7 +35,7 @@
 
 En la gestión de cadenas de suministro, decidir **qué almacén atiende a cada zona de demanda** no es un ejercicio geométrico trivial: depende de la capacidad instalada, de la distancia real sobre la red vial y de si la política operativa permite o no fraccionar un pedido entre varios orígenes. Un error de asignación se traduce directamente en sobrecosto de transporte, saturación de depósitos y desabastecimiento de zonas.
 
-**AHRL** es una solución portable, construida con HTML5/JavaScript vanilla sin build step (`index.html` + `style.css` + `script.js`), que permite:
+**AHRL** es una solución portable, construida en un único archivo HTML5/JavaScript, que permite:
 
 1. Construir sobre un **mapa real** la red de almacenes y zonas de demanda.
 2. Calcular las **distancias reales por calle** mediante el motor de ruteo [OSRM](http://project-osrm.org/) (no distancia euclídea).
@@ -73,7 +73,7 @@ La aplicación está desplegada en GitHub Pages y lista para usar directamente, 
 - **Import/Export JSON** con validación estructural estricta (todo o nada) para portabilidad de la red entre equipos.
 - **Tema claro/oscuro** persistido en `localStorage`.
 - **Validación en vivo** de parámetros, confirmaciones destructivas y cancelación no destructiva de operaciones en curso.
-- **Cero backend, cero build step**: tres archivos estáticos (`index.html`, `style.css`, `script.js`), ejecutables localmente o desde cualquier servidor estático.
+- **Cero backend, cero build step**: un solo archivo HTML, ejecutable localmente o desde cualquier servidor estático.
 
 ---
 
@@ -90,13 +90,13 @@ La aplicación está desplegada en GitHub Pages y lista para usar directamente, 
 | Intercambio de datos | JSON (Blob API / FileReader) | Exportar, importar y validar la red |
 | Tipografía | Inter (UI) + IBM Plex Mono (datos numéricos) | Google Fonts |
 
-No se utilizan frameworks de componentes, bundlers ni librerías de gráficos de terceros. Toda la inteligencia analítica —incluido el método MODI y el árbol de Branch & Bound— está implementada desde cero en `script.js`, lo que facilita la auditoría del código línea por línea.
+No se utilizan frameworks de componentes, bundlers ni librerías de gráficos de terceros. Toda la inteligencia analítica —incluido el método MODI y el árbol de Branch & Bound— está implementada desde cero en el propio archivo, lo que facilita la auditoría del código línea por línea.
 
 ---
 
 ## Arquitectura
 
-AHRL sigue una arquitectura **SPA portable sin build step**, ejecutada íntegramente del lado del cliente:
+AHRL sigue una arquitectura **SPA portable de archivo único**, ejecutada íntegramente del lado del cliente:
 
 - Sin servidor de aplicación propio.
 - Sin motor de base de datos relacional.
@@ -107,13 +107,7 @@ Esta decisión privilegia la **portabilidad absoluta** y la **auditoría directa
 
 ```
 ahrl/
-├── index.html  # Estructura SPA + layout de dos columnas
-├── style.css   # Tema claro/oscuro, estilos
-├── script.js   # Estado global, CRUD, OSRM, solvers VAM+MODI / Branch & Bound, KPIs, import/export
-├── docs/
-│   └── memoria-descriptiva.pdf
-└── img/
-    └── image.png
+ └── index.html   # Interfaz + lógica de negocio + solvers, todo en un archivo
 ```
 
 ---
