@@ -3,9 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AHRL — asignación óptima almacén-zona sobre mapa real con OSRM, VAM+MODI y Branch & Bound.">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%230082f3'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='1.4' fill='white'/%3E%3C/svg%3E">
 <title>Asignador Heurístico de Redes Logísticas</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link rel="stylesheet" href="style.css">
@@ -17,7 +14,6 @@
   <!-- HEADER -->
   <div class="header">
     <div class="brand">
-      <div class="brand-eyebrow">Red logística · Pucallpa</div>
       <h1>Asignador Heurístico de Redes Logísticas</h1>
       <p>Ubica almacenes y zonas de demanda directamente en el mapa de tu ciudad y asigna cada zona al almacén más conveniente siguiendo rutas reales por calle.</p>
     </div>
@@ -31,17 +27,17 @@
 
     <div class="controls-row">
       <div class="control-group">
-        <label for="circuitFactor">Factor de seguridad (r)</label>
+        <label>Factor de seguridad (r)</label>
         <input type="number" id="circuitFactor" value="1.15" step="0.01" min="1">
         <div class="field-warning" id="circuitFactorWarn">Debe ser mayor que 0.</div>
       </div>
       <div class="control-group">
-        <label for="transportRate">Tarifa ($/unidad·km)</label>
+        <label>Tarifa ($/unidad·km)</label>
         <input type="number" id="transportRate" value="1.15" step="0.01" min="0">
         <div class="field-warning" id="transportRateWarn">Debe ser ≥ 0.</div>
       </div>
       <div class="control-group">
-        <label for="splitMode">División de demanda</label>
+        <label>División de demanda</label>
         <select id="splitMode">
           <option value="split">Permitir dividir entre almacenes</option>
           <option value="nosplit">No dividir (siguiente almacén)</option>
@@ -127,7 +123,7 @@
       <!-- RESULTS -->
       <div class="panel">
         <div class="panel-head">
-          <h3>Resultados detallados de asignación</h3>
+          <h3>Resultados Detallados de Asignación</h3>
         </div>
         <div class="panel-body">
           <div class="routing-status" id="routingStatus">
@@ -153,7 +149,7 @@
 
       <!-- UTILIZATION -->
       <div class="panel">
-        <div class="panel-head"><h3>Utilización de capacidad por almacén</h3></div>
+        <div class="panel-head"><h3>Utilización de Capacidad por Almacén</h3></div>
         <div class="panel-body" id="utilizationList">
           <div class="hint">Sin datos todavía.</div>
         </div>
@@ -164,7 +160,7 @@
     <div class="map-col">
       <div class="panel map-panel">
         <div class="panel-head">
-          <h3>Mapa de la red</h3>
+          <h3>Mapa de la Red</h3>
           <span class="hint" id="mapHint">Haz clic en "Agregar" para ubicar un punto en el mapa</span>
         </div>
         <div class="panel-body">
