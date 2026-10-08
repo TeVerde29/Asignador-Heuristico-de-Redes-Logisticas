@@ -7,7 +7,6 @@
   <img src="https://img.shields.io/badge/JavaScript-Vanilla-f5b942?style=for-the-badge&logo=javascript&logoColor=111827" alt="JavaScript Vanilla">
   <img src="https://img.shields.io/badge/Mapa-Leaflet-65c18c?style=for-the-badge&logo=leaflet&logoColor=ffffff" alt="Leaflet">
   <img src="https://img.shields.io/badge/Ruteo-OSRM-2563eb?style=for-the-badge" alt="OSRM">
-  <img src="https://img.shields.io/badge/Tipo-SPA-334155?style=for-the-badge" alt="Aplicación SPA">
   <img src="https://img.shields.io/badge/Licencia-MIT-64748b?style=for-the-badge" alt="Licencia MIT">
 </p>
 
