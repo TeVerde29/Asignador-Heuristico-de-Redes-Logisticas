@@ -34,7 +34,7 @@
 
 En la gestión de cadenas de suministro, decidir **qué almacén atiende a cada zona de demanda** no es un ejercicio geométrico trivial: depende de la capacidad instalada, de la distancia real sobre la red vial y de si la política operativa permite o no fraccionar un pedido entre varios orígenes. Un error de asignación se traduce directamente en sobrecosto de transporte, saturación de depósitos y desabastecimiento de zonas.
 
-**AHRL** es una solución portable, construida en un único archivo HTML5/JavaScript, que permite:
+**AHRL** es una solución portable, construida con HTML5/JavaScript vanilla sin build step (`index.html` + `style.css` + `script.js`), que permite:
 
 1. Construir sobre un **mapa real** la red de almacenes y zonas de demanda.
 2. Calcular las **distancias reales por calle** mediante el motor de ruteo [OSRM](http://project-osrm.org/) (no distancia euclídea).
@@ -49,7 +49,9 @@ Geográficamente, la aplicación nace anclada a **Pucallpa (Ucayali, Perú)** co
 
 ## Demo
 
-![Captura de pantalla del sistema](img/image.png)
+| Tema claro | Tema oscuro |
+|---|---|
+| ![Panel en tema claro: optimización completada ($87.00, 100%), rutas sobre vista satelital 3D](img/panel-claro.png) | ![Panel en tema oscuro: optimización en curso con barra de progreso de ruteo OSRM](img/panel-oscuro.png) |
 
 La aplicación está desplegada en GitHub Pages y lista para usar directamente, sin instalación ni configuración previa:
 
@@ -70,9 +72,9 @@ La aplicación está desplegada en GitHub Pages y lista para usar directamente, 
 - **KPIs en vivo**: costo total, distancia ponderada (km·unidad), satisfacción de demanda y utilización de capacidad por almacén.
 - **Semaforización de estados** por zona: Cubierta, Parcial o Sin capacidad.
 - **Import/Export JSON** con validación estructural estricta (todo o nada) para portabilidad de la red entre equipos.
-- **Tema claro/oscuro** persistido en `localStorage`.
+- **Tema claro/oscuro** (sistema Tea Green, Space Grotesk + Inter) persistido en `localStorage`.
 - **Validación en vivo** de parámetros, confirmaciones destructivas y cancelación no destructiva de operaciones en curso.
-- **Cero backend, cero build step**: un solo archivo HTML, ejecutable localmente o desde cualquier servidor estático.
+- **Cero backend, cero build step**: tres archivos estáticos (`index.html`, `style.css`, `script.js`), ejecutables desde cualquier servidor estático o local.
 
 ---
 
@@ -87,15 +89,15 @@ La aplicación está desplegada en GitHub Pages y lista para usar directamente, 
 | Ruteo real | [OSRM](http://project-osrm.org/) (perfil *driving*) | Distancia y polilínea real por calle |
 | Optimización | VAM + MODI / Branch & Bound | Asignación con o sin fraccionamiento (implementación propia) |
 | Intercambio de datos | JSON (Blob API / FileReader) | Exportar, importar y validar la red |
-| Tipografía | Inter (UI) + IBM Plex Mono (datos numéricos) | Google Fonts |
+| Tipografía | Space Grotesk (titulares) + Inter (UI, cifras tabulares) | Google Fonts |
 
-No se utilizan frameworks de componentes, bundlers ni librerías de gráficos de terceros. Toda la inteligencia analítica —incluido el método MODI y el árbol de Branch & Bound— está implementada desde cero en el propio archivo, lo que facilita la auditoría del código línea por línea.
+No se utilizan frameworks de componentes, bundlers ni librerías de gráficos de terceros. Toda la inteligencia analítica —incluido el método MODI y el árbol de Branch & Bound— está implementada desde cero en `script.js`, lo que facilita la auditoría del código línea por línea.
 
 ---
 
 ## Arquitectura
 
-AHRL sigue una arquitectura **SPA portable de archivo único**, ejecutada íntegramente del lado del cliente:
+AHRL sigue una arquitectura **SPA portable sin build step**, ejecutada íntegramente del lado del cliente:
 
 - Sin servidor de aplicación propio.
 - Sin motor de base de datos relacional.
@@ -106,7 +108,14 @@ Esta decisión privilegia la **portabilidad absoluta** y la **auditoría directa
 
 ```
 ahrl/
- └── index.html   # Interfaz + lógica de negocio + solvers, todo en un archivo
+├── index.html  # Estructura SPA + layout de dos columnas
+├── style.css   # Sistema Tea Green: tema claro/oscuro, componentes
+├── script.js   # Estado global, CRUD, OSRM, solvers VAM+MODI / Branch & Bound, KPIs, import/export
+├── docs/
+│   └── memoria-descriptiva.pdf
+└── img/
+    ├── panel-claro.png
+    └── panel-oscuro.png
 ```
 
 ---
@@ -140,12 +149,15 @@ No requiere instalación de dependencias ni pasos de compilación.
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/TeVerde29/asignador-heuristico-redes-logisticas.git
+git clone https://github.com/TeVerde29/Asignador-Heuristico-de-Redes-Logisticas.git
 
 # Entrar a la carpeta del proyecto
-cd asignador-heuristico-redes-logisticas
+cd Asignador-Heuristico-de-Redes-Logisticas
 
-# Abrir index.html directamente en el navegador
+# Servir en local (las teselas 2D de OSM exigen origen http;
+# abrir por doble clic muestra "Access blocked" en el mapa)
+python -m http.server 8000
+# Abrir http://localhost:8000/index.html en el navegador
 ```
 
 ### Flujo básico de uso
